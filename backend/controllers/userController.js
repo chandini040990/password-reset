@@ -2,7 +2,7 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const transporter = require("../config/mail");
-const { data } = require("react-router-dom");
+// const { data } = require("react-router-dom");
 
 //user registration
 exports.registerUser = async (req, res) => {
