@@ -96,7 +96,8 @@ exports.forgetPassword = async (req, res) => {
 
         // send email notification 
         // const link = `http://localhost:${process.env.PORT}/api/resetpassword/${token}`;
-        const link = `http://localhost:3000/resetpassword`;
+        // const link = `http://localhost:3000/resetpassword`;
+        const link = `https://password-reset-qhp3.onrender.com/resetpassword`;
         const mailOptions = {
             from: process.env.SMTP_USER,
             to: user.email,
