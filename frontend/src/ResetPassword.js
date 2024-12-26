@@ -18,7 +18,7 @@ function ResetPassword() {
                 setMessage("Password not matching!!");
             }
             else {
-                const res = await api.put('https://password-reset-qhp3.onrender.com/api/resetpassword', { email, password, token });
+                const res = await api.put('/resetpassword', { email, password, token });
                 if (res.ok || res.status === 201 ) {
                     console.log("Password is reset", res.data);
                     setMessage("Password reset successful");
