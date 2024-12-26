@@ -29,7 +29,7 @@ function Login() {
     const handleEmail = async (e) => {
         e.preventDefault();
         try {
-            const resp = await api.post('https://chand2-password-reset.netlify.app/forgotpassword', { email });
+            const resp = await api.post('https://password-reset-qhp3.onrender.com/api/forgotpassword', { email });
             if (resp.ok || resp.status === 201) {
                 console.log("Link to reset password has been sent to your email", resp.data);
                 setMessage("Link to reset password has been sent to your email");

@@ -12,7 +12,7 @@ function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await api.post('https://chand2-password-reset.netlify.app/register', { email, password });
+            const res = await api.post('https://password-reset-qhp3.onrender.com/api/register', { email, password });
             console.log(res.data.message)
             if (res.ok || res.status === 201) {
                 console.log("user is registered", res.data);
