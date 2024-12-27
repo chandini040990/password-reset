@@ -16,3 +16,13 @@ In Login page, if user clicks forgot password link then an reset password link i
 Reset Password:
 User can enter new password and token to reset.If token is matching then allows password reset else throws error. Navigate to Login Page.
 
+Frontend link:
+https://chand-password-reset.netlify.app/
+https://chand-password-reset.netlify.app/login
+https://chand-password-reset.netlify.app/resetpassword
+
+Backend link:
+https://password-reset-1-cyor.onrender.com/api/register
+https://password-reset-1-cyor.onrender.com/api/login
+https://password-reset-1-cyor.onrender.com/api/forgotpassword
+https://password-reset-1-cyor.onrender.com/api/resetpassword
