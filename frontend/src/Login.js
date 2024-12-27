@@ -34,6 +34,7 @@ function Login() {
             if (resp.ok || resp.status === 201) {
                 console.log("Link to reset password has been sent to your email", resp.data);
                 setMessage("Link to reset password has been sent to your email");
+                navigate("/resetpassword")
             }
         } catch (error) {
             console.log(error)
