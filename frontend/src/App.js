@@ -9,9 +9,9 @@ function App() {
     <Router>
     <div className="App">
       <Routes>
-        <Route path="/" element = {<Register />} />
-        <Route path="/login" element = {<Login />} />
-        <Route path="/resetpassword" element = {<ResetPassword />} />
+        <Route path="https://chand-password-reset.netlify.app/" element = {<Register />} />
+        <Route path="https://chand-password-reset.netlify.app/login" element = {<Login />} />
+        <Route path="https://chand-password-reset.netlify.app/resetpassword" element = {<ResetPassword />} />
       </Routes>
     </div>
     </Router>
