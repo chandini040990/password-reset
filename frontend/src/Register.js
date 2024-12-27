@@ -34,7 +34,7 @@ function Register() {
 
         } catch (error) {
             console.log(error)
-            setError("User registration failed");
+            // setError("User registration failed");
         }
     }
 
