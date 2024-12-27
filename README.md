@@ -16,6 +16,9 @@ In Login page, if user clicks forgot password link then an reset password link i
 Reset Password:
 User can enter new password and token to reset.If token is matching then allows password reset else throws error. Navigate to Login Page.
 
+API Documentation Link:
+https://documenter.getpostman.com/view/40507850/2sAYJ6Bz2w
+
 Frontend link:
 https://chand-password-reset.netlify.app/
 https://chand-password-reset.netlify.app/login
