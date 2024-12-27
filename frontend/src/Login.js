@@ -21,7 +21,8 @@ function Login() {
 
         } catch (error) {
             console.log(error)
-            setMessage("Login Failed");
+            setMessage("Login Failed. Invalid email/password");
+            // navigate("/resetpassword")
         }
     }
 
@@ -36,7 +37,7 @@ function Login() {
             }
         } catch (error) {
             console.log(error)
-            setMessage("Password reset mail failed");
+            setMessage("Error sending password reset mail");
         }
     }
 
