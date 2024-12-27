@@ -1,6 +1,6 @@
 import { useState } from "react";
 import api from "./api";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 function ResetPassword() {
     const [email, setEmail] = useState('');
@@ -8,7 +8,7 @@ function ResetPassword() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [token, setToken] = useState('');
     const [message, setMessage] = useState("");
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     // handle form submit
     const handleSubmit = async (e) => {
@@ -18,7 +18,7 @@ function ResetPassword() {
                 setMessage("Password not matching!!");
             }
             else {
-                const res = await api.put('/resetpassword', { email, password, token });
+                const res = await api.post('/resetpassword', { email, password, token });
                 if (res.ok || res.status === 201) {
                     console.log("Password is reset", res.data);
                     setMessage("Password reset successful");
@@ -26,7 +26,7 @@ function ResetPassword() {
                     setPassword('')
                     setToken('')
                     setConfirmPassword('')
-                    navigate("/login")
+                    // navigate("/login")
                 } else {
                     console.log("Password reset failed.Token mismatching/invalid");
                     setMessage("Password reset failed.Token mismatching/invalid");

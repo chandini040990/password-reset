@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import api from "./api";
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState("");
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     // handle form submit
     const handleSubmit = async (e) => {
@@ -16,7 +16,7 @@ function Login() {
             if (res.ok || res.status === 201) {
                 console.log("user is logged in", res.data);
                 setMessage("Login successful");
-                navigate("/login")
+                // navigate("/login")
             } else {
                 console.log("Login Failed. Invalid email/password");
                 setMessage("Login Failed. Invalid email/password");

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import api from "./api";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState("");
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     // handle form submit
     const handleSubmit = async (e) => {
@@ -19,7 +19,7 @@ function Register() {
                 setMessage("Registration is successful");
                 setEmail('')
                 setPassword('')
-                navigate("/login")
+                // navigate("/login")
             } else {
                 console.log("User registration failed/User already exists");
                 setMessage("User registration failed/User already exists");
