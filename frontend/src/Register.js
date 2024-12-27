@@ -1,33 +1,40 @@
 import { useState } from "react";
 import api from "./api";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState("");
-    // const navigate = useNavigate();
+    const [error, setError] = useState(''); // State for error messages
+    const navigate = useNavigate();
 
     // handle form submit
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        setError(''); // Clear previous errors
+        setMessage(''); // Clear previous messages
+
         try {
             const res = await api.post('/register', { email, password });
-            console.log(res.data.message)
+
             if (res.ok || res.status === 201) {
-                console.log("user is registered", res.data);
-                setMessage("Registration is successful");
+                const data = await res.json();
+                console.log("user is registered", data);
+                setMessage(data.message || "Registration is successful");
                 setEmail('')
                 setPassword('')
-                // navigate("/login")
+                navigate("/login")
             } else {
+                const errordata = await res.json();
                 console.log("User registration failed/User already exists");
-                setMessage("User registration failed/User already exists");
+                setError(errordata.message || "User registration failed/User already exists");
             }
 
         } catch (error) {
             console.log(error)
-            // setMessage("User registration failed/User already exists");
+            setError("User registration failed");
         }
     }
 
@@ -35,7 +42,8 @@ function Register() {
         <div className="register">
             <img className="w-16 h-16 ml-36" src="icon.png" alt="icon" />
             <h2 className="text-center font-bold text-2xl py-2">Registration Form</h2>
-            {message && <p className="text-red-500 py-2 font-mono">{message}</p>}
+            {message && <p className="text-green-600 py-2 font-mono">{message}</p>}
+            {error && <p className="text-red-600 py-2 font-mono">{error}</p>}
 
             <form onSubmit={handleSubmit}>
 

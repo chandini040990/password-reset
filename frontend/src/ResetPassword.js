@@ -1,6 +1,6 @@
 import { useState } from "react";
 import api from "./api";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ResetPassword() {
     const [email, setEmail] = useState('');
@@ -8,11 +8,16 @@ function ResetPassword() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [token, setToken] = useState('');
     const [message, setMessage] = useState("");
-    // const navigate = useNavigate();
+    const [error, setError] = useState(''); // State for error messages
+    const navigate = useNavigate();
 
     // handle form submit
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        setError(''); // Clear previous errors
+        setMessage(''); // Clear previous messages
+
         try {
             if (password !== confirmPassword) {
                 setMessage("Password not matching!!");
@@ -20,21 +25,23 @@ function ResetPassword() {
             else {
                 const res = await api.post('/resetpassword', { email, password, token });
                 if (res.ok || res.status === 201) {
-                    console.log("Password is reset", res.data);
+                    const data = await res.json();
+                    console.log("Password is reset", data);
                     setMessage("Password reset successful");
                     setEmail('')
                     setPassword('')
                     setToken('')
                     setConfirmPassword('')
-                    // navigate("/login")
+                    navigate("/login")
                 } else {
+                    const errordata = await res.json();
                     console.log("Password reset failed.Token mismatching/invalid");
-                    setMessage("Password reset failed.Token mismatching/invalid");
+                    setError(errordata.message || "Password reset failed.Token mismatching/invalid");
                 }
             }
         } catch (error) {
             console.log(error)
-            // setMessage("Password reset failed.Token mismatching/invalid");
+            setError("Password reset failed");
         }
     }
 
@@ -42,7 +49,8 @@ function ResetPassword() {
         <div className="resetPassword">
             <img className="w-16 h-16 ml-36" src="reset.png" alt="icon" />
             <h2 className="text-center font-bold text-2xl py-2">Reset Password Form</h2>
-            {message && <p className="text-red-500 py-2 font-mono">{message}</p>}
+            {message && <p className="text-green-600 py-2 font-mono">{message}</p>}
+            {error && <p className="text-red-600 py-2 font-mono">{error}</p>}
 
             <form onSubmit={handleSubmit}>
 
@@ -63,7 +71,7 @@ function ResetPassword() {
 
                 <div>
                     <label>Token:</label>
-                    <textarea name="Token" placeholder="Enter token sent in password reset email" type="text" rows="5" cols="15" value={token} onChange={(e) => setToken(e.target.value)} required />
+                    <textarea name="Token" placeholder="Enter token sent in password reset email" type="password" rows="5" cols="15" value={token} onChange={(e) => setToken(e.target.value)} required />
                 </div>
 
                 <button type="submit">Reset</button>
