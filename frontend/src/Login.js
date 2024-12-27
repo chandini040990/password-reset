@@ -19,19 +19,19 @@ function Login() {
         try {
             const res = await api.post('/login', { email, password });
             if (res.ok || res.status === 201) {
-                const data = await res.json();
-                console.log("user is logged in", data);
-                setMessage(data.message || "Login successful");
+                // const data = await res.json();
+                console.log("user is logged in", res.data);
+                setMessage("Login successful");
                 navigate("/login")
             } else {
-                const errordata = await res.json();
+                // const errordata = await res.json();
                 console.log("Login Failed. Invalid email/password");
-                setError(errordata.message || "Login Failed. Invalid email/password");
+                setError("Login Failed. Invalid email/password");
             }
 
         } catch (error) {
             console.log(error)
-            setError("Login Failed");
+            setError("Login Failed. Invalid email/password");
             // navigate("/resetpassword")
         }
     }
@@ -46,18 +46,18 @@ function Login() {
         try {
             const resp = await api.post('/forgotpassword', { email });
             if (resp.ok || resp.status === 201) {
-                const data = await resp.json();
-                console.log("Link to reset password has been sent to your email", data);
-                setMessage(data.message || "Link to reset password has been sent to your email");
-                // navigate("/resetpassword")
+                // const data = await resp.json();
+                console.log("Link to reset password has been sent to your email", resp.data);
+                setMessage("Link to reset password has been sent to your email");
+                navigate("/login")
             } else {
-                const errordata = await resp.json();
+                // const errordata = await resp.json();
                 console.log("Error sending password reset mail");
-                setError(errordata.message || "Error sending password reset mail");
+                setError("Error sending password reset mail");
             }
         } catch (error) {
             console.log(error)
-            // setMessage("Error sending password reset mail");
+            setError("Error sending password reset mail");
         }
     }
 

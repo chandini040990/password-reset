@@ -20,21 +20,21 @@ function Register() {
             const res = await api.post('/register', { email, password });
 
             if (res.ok || res.status === 201) {
-                const data = await res.json();
-                console.log("user is registered", data);
-                setMessage(data.message || "Registration is successful");
+                // const data = await res.json();
+                console.log("user is registered", res.data);
+                setMessage("Registration is successful");
                 setEmail('')
                 setPassword('')
                 navigate("/login")
             } else {
-                const errordata = await res.json();
+                // const errordata = await res.json();
                 console.log("User registration failed/User already exists");
-                setError(errordata.message || "User registration failed/User already exists");
+                setError("User registration failed/User already exists");
             }
 
         } catch (error) {
             console.log(error)
-            setError("User registration failed");
+            setError("User registration failed/User already exists");
         }
     }
 
