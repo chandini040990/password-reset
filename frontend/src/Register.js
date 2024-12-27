@@ -20,11 +20,14 @@ function Register() {
                 setEmail('')
                 setPassword('')
                 navigate("/login")
+            } else {
+                console.log("User registration failed/User already exists");
+                setMessage("User registration failed/User already exists");
             }
 
         } catch (error) {
             console.log(error)
-            setMessage("User registration failed/User already exists");
+            // setMessage("User registration failed/User already exists");
         }
     }
 

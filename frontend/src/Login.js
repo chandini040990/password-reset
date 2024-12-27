@@ -17,11 +17,14 @@ function Login() {
                 console.log("user is logged in", res.data);
                 setMessage("Login successful");
                 navigate("/login")
+            } else {
+                console.log("Login Failed. Invalid email/password");
+                setMessage("Login Failed. Invalid email/password");
             }
 
         } catch (error) {
             console.log(error)
-            setMessage("Login Failed. Invalid email/password");
+            // setMessage("Login Failed. Invalid email/password");
             // navigate("/resetpassword")
         }
     }
@@ -34,11 +37,14 @@ function Login() {
             if (resp.ok || resp.status === 201) {
                 console.log("Link to reset password has been sent to your email", resp.data);
                 setMessage("Link to reset password has been sent to your email");
-                navigate("/resetpassword")
+                // navigate("/resetpassword")
+            } else {
+                console.log("Error sending password reset mail");
+                setMessage("Error sending password reset mail");
             }
         } catch (error) {
             console.log(error)
-            setMessage("Error sending password reset mail");
+            // setMessage("Error sending password reset mail");
         }
     }
 

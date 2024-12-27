@@ -19,7 +19,7 @@ function ResetPassword() {
             }
             else {
                 const res = await api.put('/resetpassword', { email, password, token });
-                if (res.ok || res.status === 201 ) {
+                if (res.ok || res.status === 201) {
                     console.log("Password is reset", res.data);
                     setMessage("Password reset successful");
                     setEmail('')
@@ -27,11 +27,14 @@ function ResetPassword() {
                     setToken('')
                     setConfirmPassword('')
                     navigate("/login")
+                } else {
+                    console.log("Password reset failed.Token mismatching/invalid");
+                    setMessage("Password reset failed.Token mismatching/invalid");
                 }
             }
         } catch (error) {
             console.log(error)
-            setMessage("Password reset failed.Token mismatching/invalid");
+            // setMessage("Password reset failed.Token mismatching/invalid");
         }
     }
 
