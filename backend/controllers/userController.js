@@ -97,7 +97,7 @@ exports.forgetPassword = async (req, res) => {
         // send email notification 
         // const link = `http://localhost:${process.env.PORT}/api/resetpassword/${token}`;
         // const link = `http://localhost:3000/resetpassword`;
-        const link = `https://chand2-password-reset.netlify.app/resetpassword`;
+        const link = `https://chand-password-reset.netlify.app/resetpassword`;
         const mailOptions = {
             from: process.env.SMTP_USER,
             to: user.email,
